@@ -7,3 +7,13 @@
 !LICENSE
 
 !README.md
+
+!src
+
+# Gradle
+!build.gradle
+!settings.gradle
+# Gradle Wrapper
+!gradle
+!gradlew
+!gradlew.bat
