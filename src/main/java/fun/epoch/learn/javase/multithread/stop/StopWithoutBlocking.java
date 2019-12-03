@@ -6,9 +6,14 @@ package fun.epoch.learn.javase.multithread.stop;
 public class StopWithoutBlocking {
     public static void main(String[] args) throws InterruptedException {
         Thread T = new Thread(() -> {
+            // 线程自身需要添加相应的 “中断响应处理”，才能确保线程可以被正确停止 (中断)
             for (int i = 0; i < Integer.MAX_VALUE / 2; i++) {
                 if (i % 10000 == 0) {
                     System.out.println(i + " 是 10000 的倍数");
+                }
+                if (Thread.currentThread().isInterrupted()) {
+                    System.out.println("线程在正常运行时响应中断，然后停止执行");
+                    return;
                 }
             }
             System.out.println("线程正常执行完毕");
