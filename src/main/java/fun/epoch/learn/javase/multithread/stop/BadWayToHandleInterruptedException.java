@@ -10,6 +10,13 @@ public class BadWayToHandleInterruptedException {
                 System.out.println("正在保存数据...");
                 // 线程的 run 方法作为上层调用者，却无法感知该方法可能产生中断异常，也就无法在任务失败、取消时做相应的处理
                 saveData();
+                // 上层调用者试图检测线程是否被中断，但是由于子方法已经 “吞掉” 了中断异常，并清除了中断标记，所以此处的检测是无效的
+                if (Thread.currentThread().isInterrupted()) {
+                    System.out.println("取消保存数据...");
+                    System.out.println("正在保存日志...");
+                    System.out.println("生成邮件通知...");
+                    return;
+                }
             }
             System.out.println("成功保存数据...");
         });
