@@ -40,7 +40,9 @@ public class WaitAndNotifyAll {
         Thread C = new Thread(runnableC, "线程 C");
         A.start();
         B.start();
-        Thread.sleep(100);
+        // 3. 先 start 的线程不一定先执行，因此如果此处不休眠，则线程的启动顺序是无法确定的。
+        // 3. 演示：多次运行本程序，当出现线程 C 先于 B 执行的情况时，线程 B 将失去被它唤醒的机会，从而陷入永久等待
+        // Thread.sleep(100);
         C.start();
     }
 }
