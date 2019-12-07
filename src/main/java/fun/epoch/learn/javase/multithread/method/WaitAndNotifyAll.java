@@ -27,7 +27,8 @@ public class WaitAndNotifyAll {
     private static final Runnable runnableC = () -> {
         synchronized (resource) {
             System.out.println(Thread.currentThread().getName() + " 获取到锁了，开始执行");
-            resource.notify(); // 1. 其中一个线程无法被唤醒，将会陷入永久等待
+            // resource.notify(); // 1. 其中一个线程无法被唤醒，将会陷入永久等待
+            resource.notifyAll(); // 2. 两个线程都会被唤醒，然后正常执行直至结束
             System.out.println(Thread.currentThread().getName() + " 已经执行了 notify");
             System.out.println(Thread.currentThread().getName() + " 已执行完毕");
         }
