@@ -10,10 +10,12 @@ package fun.epoch.learn.javase.multithread.method;
 public class PrintsEvenAndOddBySynchronized {
     private static final Object printer = new Object();
     private static int counter = 0;
+    private static int sum = 0;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Thread evenPrinter = new Thread(() -> {
             while (counter < 100) {
+                sum++;
                 synchronized (printer) {
                     if ((counter & 1) == 1) {
                         System.out.println(Thread.currentThread().getName() + " print: " + counter++);
@@ -24,6 +26,7 @@ public class PrintsEvenAndOddBySynchronized {
 
         Thread oddPrinter = new Thread(() -> {
             while (counter < 100) {
+                sum++;
                 synchronized (printer) {
                     if ((counter & 1) == 0) {
                         System.out.println(Thread.currentThread().getName() + " print: " + counter++);
@@ -34,5 +37,9 @@ public class PrintsEvenAndOddBySynchronized {
 
         evenPrinter.start();
         oddPrinter.start();
+
+        evenPrinter.join();
+        oddPrinter.join();
+        System.out.println("两个线程预期执行 101 次，实际执行 " + sum + " 次，");
     }
 }

@@ -10,6 +10,7 @@ package fun.epoch.learn.javase.multithread.method;
 public class PrintsEvenAndOddByWaitAndNotify {
     private static final Object printer = new Object();
     private static int counter = 0;
+    private static int sum = 0;
 
     private static class Printer extends Thread {
         public Printer(String name) {
@@ -20,6 +21,7 @@ public class PrintsEvenAndOddByWaitAndNotify {
         public void run() {
             synchronized (printer) {
                 while (counter <= 100) {
+                    sum++;
                     System.out.println(Thread.currentThread().getName() + " print: " + counter++);
                     try {
                         printer.notify();
@@ -40,5 +42,9 @@ public class PrintsEvenAndOddByWaitAndNotify {
         oddPrinter.start();
         Thread.sleep(100); // 短暂休眠，确保线程启动顺序符合预期
         evenPrinter.start();
+
+        evenPrinter.join();
+        oddPrinter.join();
+        System.out.println("两个线程预期执行 101 次，实际执行 " + sum + " 次，");
     }
 }
