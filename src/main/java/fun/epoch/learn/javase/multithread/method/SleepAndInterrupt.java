@@ -1,5 +1,7 @@
 package fun.epoch.learn.javase.multithread.method;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * 描述：演示 sleep & interrupt 的基本用法
  * <p>
@@ -9,7 +11,10 @@ public class SleepAndInterrupt {
     public static void main(String[] args) throws InterruptedException {
         T t = new T();
         t.start();
-        Thread.sleep(5500);
+        // Thread.sleep(5500);
+        // 演示 sleep 的优雅写法
+        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.MILLISECONDS.sleep(500);
         t.interrupt();
     }
 
