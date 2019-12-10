@@ -23,7 +23,10 @@ public class JoinPrinciple {
         });
 
         T.start();
-        T.join();
+        // T.join();
+        synchronized (T) {
+            T.wait(); // 当线程 T 执行完毕时，JVM 自动调用 T.notifyAll(), 此时主线程就会被唤醒并继续执行
+        }
         System.out.println(Thread.currentThread().getName() + " 执行完毕");
     }
 }
