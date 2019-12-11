@@ -10,9 +10,12 @@ package fun.epoch.learn.javase.multithread.exception;
  * 证明 无法使用传统方式 (try/catch) 在主线程中捕获子线程中的异常
  * <p>
  * 3. 手动在每个子线程中捕获并处理异常 (麻烦，不推荐)
+ * 4. 使用 UncaughtExceptionHandler 给程序统一设置线程异常处理器
  */
 public class ShowExceptionInChildThreadCantCatchDirectly {
     public static void main(String[] args) {
+        Thread.setDefaultUncaughtExceptionHandler((t, e) -> System.out.println("线程全局异常处理器 捕获到了子线程抛出的异常：" + e.getMessage()));
+
         new Thread(runnable, "A").start();
         new Thread(runnable, "B").start();
         new Thread(runnable, "C").start();
@@ -20,10 +23,6 @@ public class ShowExceptionInChildThreadCantCatchDirectly {
     }
 
     private static final Runnable runnable = () -> {
-        try {
-            throw new RuntimeException("线程 " + Thread.currentThread().getName() + " 抛出了异常");
-        } catch (RuntimeException e) {
-            System.out.println("捕获到子线程抛出的异常：" + e.getMessage());
-        }
+        throw new RuntimeException("线程 " + Thread.currentThread().getName() + " 抛出了异常");
     };
 }
