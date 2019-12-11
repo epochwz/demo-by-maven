@@ -11,10 +11,15 @@ package fun.epoch.learn.javase.multithread.exception;
  */
 public class ShowExceptionInChildThreadCantCatchDirectly {
     public static void main(String[] args) {
-        new Thread(runnable, "A").start();
-        new Thread(runnable, "B").start();
-        new Thread(runnable, "C").start();
-        new Thread(runnable, "D").start();
+        try {
+            new Thread(runnable, "A").start();
+            new Thread(runnable, "B").start();
+            new Thread(runnable, "C").start();
+            new Thread(runnable, "D").start();
+        } catch (RuntimeException e) {
+            System.out.println("捕获到子线程抛出的异常：" + e.getMessage());
+        }
+
     }
 
     private static final Runnable runnable = () -> {
