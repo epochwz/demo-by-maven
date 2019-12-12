@@ -18,6 +18,7 @@ public class MultiThreadError1 {
 
         @Override
         public void run() {
+            marked[0] = true;
             for (int i = 0; i < 10000; i++) {
                 realCount.incrementAndGet();
                 try {
@@ -30,7 +31,7 @@ public class MultiThreadError1 {
                     e.printStackTrace();
                 }
                 synchronized (Counter.class) {
-                    if (marked[count]) {
+                    if (marked[count] && marked[count - 1]) {
                         wrongCount.incrementAndGet();
                         System.out.println("出错的位置：" + realCount);
                     }
