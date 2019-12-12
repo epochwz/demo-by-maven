@@ -17,10 +17,12 @@ public class MultiThreadError1 {
             for (int i = 0; i < 10000; i++) {
                 realCount.incrementAndGet();
                 count++;
-                if (marked[count]) {
-                    wrongCount.incrementAndGet();
+                synchronized (Counter.class) {
+                    if (marked[count]) {
+                        wrongCount.incrementAndGet();
+                    }
+                    marked[count] = true;
                 }
-                marked[count] = true;
             }
         }
     }
