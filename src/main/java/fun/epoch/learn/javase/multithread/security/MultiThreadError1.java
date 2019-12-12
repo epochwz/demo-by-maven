@@ -9,12 +9,18 @@ public class MultiThreadError1 {
     private static class Counter extends Thread {
         private static int count = 0;
         private static AtomicInteger realCount = new AtomicInteger(0);
+        private static AtomicInteger wrongCount = new AtomicInteger(0);
+        private static boolean[] marked = new boolean[20001];
 
         @Override
         public void run() {
             for (int i = 0; i < 10000; i++) {
                 realCount.incrementAndGet();
                 count++;
+                if (marked[count]) {
+                    wrongCount.incrementAndGet();
+                }
+                marked[count] = true;
             }
         }
     }
@@ -31,5 +37,6 @@ public class MultiThreadError1 {
 
         System.out.println("线程实际执行次数：" + Counter.realCount);
         System.out.println("线程表面执行次数：" + Counter.count);
+        System.out.println("线程错误执行次数：" + Counter.wrongCount);
     }
 }
