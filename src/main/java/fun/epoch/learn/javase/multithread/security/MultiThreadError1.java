@@ -1,5 +1,7 @@
 package fun.epoch.learn.javase.multithread.security;
 
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -11,15 +13,26 @@ public class MultiThreadError1 {
         private static AtomicInteger realCount = new AtomicInteger(0);
         private static AtomicInteger wrongCount = new AtomicInteger(0);
         private static boolean[] marked = new boolean[20001];
+        private static CyclicBarrier cyclicBarrier1 = new CyclicBarrier(2);
+        private static CyclicBarrier cyclicBarrier2 = new CyclicBarrier(2);
 
         @Override
         public void run() {
             for (int i = 0; i < 10000; i++) {
                 realCount.incrementAndGet();
-                count++;
+                try {
+                    cyclicBarrier2.reset();
+                    cyclicBarrier1.await();
+                    count++;
+                    cyclicBarrier1.reset();
+                    cyclicBarrier2.await();
+                } catch (InterruptedException | BrokenBarrierException e) {
+                    e.printStackTrace();
+                }
                 synchronized (Counter.class) {
                     if (marked[count]) {
                         wrongCount.incrementAndGet();
+                        System.out.println("出错的位置：" + realCount);
                     }
                     marked[count] = true;
                 }
