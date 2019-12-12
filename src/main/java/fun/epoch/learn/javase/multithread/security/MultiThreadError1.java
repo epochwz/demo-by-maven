@@ -12,14 +12,14 @@ public class MultiThreadError1 {
         private static int count = 0;
         private static AtomicInteger realCount = new AtomicInteger(0);
         private static AtomicInteger wrongCount = new AtomicInteger(0);
-        private static boolean[] marked = new boolean[20001];
+        private static boolean[] marked = new boolean[1000001];
         private static CyclicBarrier cyclicBarrier1 = new CyclicBarrier(2);
         private static CyclicBarrier cyclicBarrier2 = new CyclicBarrier(2);
 
         @Override
         public void run() {
             marked[0] = true;
-            for (int i = 0; i < 10000; i++) {
+            for (int i = 0; i < 500000; i++) {
                 realCount.incrementAndGet();
                 try {
                     cyclicBarrier2.reset();
