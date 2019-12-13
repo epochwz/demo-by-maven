@@ -24,10 +24,19 @@ public class MultiThreadError3 {
         public Map<String, String> getAll() {
             return map;
         }
+
+        // 使用副本安全的发布 private 对象
+        public Map<String, String> getAllSafely() {
+            return new HashMap<>(map);
+        }
     }
 
     public static void main(String[] args) {
         Dictionary dictionary = new Dictionary();
+
+        System.out.println(dictionary.getAll().get("星期一"));
+        dictionary.getAllSafely().remove("星期一");
+        System.out.println(dictionary.getAll().get("星期一")); // Monday --> 发布时使用对象副本，可以避免外部程序随意篡改实例
 
         System.out.println(dictionary.getAll().get("星期一"));
         dictionary.getAll().remove("星期一");
