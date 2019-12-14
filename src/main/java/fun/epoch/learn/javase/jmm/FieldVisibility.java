@@ -4,8 +4,8 @@ package fun.epoch.learn.javase.jmm;
  * 描述：演示 可见性 问题
  */
 public class FieldVisibility {
-    private int x = 1;
-    private int y = 2;
+    private volatile int x = 1;
+    private volatile int y = 2;
 
     private void change() {
         x = 3;
