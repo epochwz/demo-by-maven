@@ -9,4 +9,9 @@ public class JavaCourse implements Course {
     private Integer id;
     private String name;
     private Double price;
+
+    @Override
+    public Double getDiscountPrice(double discount) {
+        return getPrice() * discount;
+    }
 }
