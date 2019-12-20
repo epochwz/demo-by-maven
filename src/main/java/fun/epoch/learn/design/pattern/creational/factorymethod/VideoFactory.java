@@ -1,5 +1,6 @@
 package fun.epoch.learn.design.pattern.creational.factorymethod;
 
+import fun.epoch.learn.design.pattern.creational.factorymethod.factory.GoVideoFactory;
 import fun.epoch.learn.design.pattern.creational.factorymethod.factory.JavaVideoFactory;
 import fun.epoch.learn.design.pattern.creational.factorymethod.factory.PythonVideoFactory;
 
@@ -15,6 +16,8 @@ public abstract class VideoFactory {
                 return new PythonVideoFactory();
             case 1:
                 return new JavaVideoFactory();
+            case 2:
+                return new GoVideoFactory();
             default:
                 return null;
         }
