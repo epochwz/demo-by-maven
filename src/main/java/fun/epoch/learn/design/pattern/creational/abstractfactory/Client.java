@@ -26,6 +26,7 @@ public class Client {
             if (courseFactory == null) continue;
             courseFactory.getVideo().record();
             courseFactory.getArticle().write();
+            courseFactory.getPPT().makePPT();
         }
     }
 }
