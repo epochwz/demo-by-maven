@@ -23,8 +23,9 @@ public class HungrySingleton implements Serializable, Cloneable {
         return instance;
     }
 
+    // 防御单例破坏 (克隆调用)：重写 clone 方法 或者 不要实现 Cloneable 接口
     @Override
     public Object clone() throws CloneNotSupportedException {
-        return super.clone();
+        return instance;
     }
 }
