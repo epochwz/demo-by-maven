@@ -17,4 +17,9 @@ public class HungrySingleton implements Serializable {
     public static HungrySingleton getInstance() {
         return instance;
     }
+
+    // 防御单例破坏 (反序列化)：实现 readResolve 方法 或者 不要实现 Serializable 接口
+    private Object readResolve() {
+        return instance;
+    }
 }
