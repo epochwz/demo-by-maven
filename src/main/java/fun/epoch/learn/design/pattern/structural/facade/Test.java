@@ -7,15 +7,9 @@ public class Test {
 
         String shippingOrderNo = "";
 
-        PointsPaymentService pointsPaymentService = new PointsPaymentService();
-        QualifyService qualifyService = new QualifyService();
-        ShippingService shippingService = new ShippingService();
-
-        if (qualifyService.isAvailable(pointsGift)) {
-            if (pointsPaymentService.pay(pointsGift)) {
-                shippingOrderNo = shippingService.shipGift(pointsGift);
-            }
-        }
+        // 使用外观模式简化一系列子系统的调用 (外部程序无需深入了解各个子系统是如何协调工作的)
+        GiftExchangeService giftExchangeService = new GiftExchangeService();
+        shippingOrderNo = giftExchangeService.exchangeGift(pointsGift);
 
         System.out.println("礼物的物流订单号：" + shippingOrderNo);
     }
