@@ -1,9 +1,6 @@
 package fun.epoch.learn.design.pattern.structural.proxy.dynamicproxy;
 
-import fun.epoch.learn.design.pattern.structural.proxy.EnhancedOrderServiceImpl;
-import fun.epoch.learn.design.pattern.structural.proxy.IOrderService;
-import fun.epoch.learn.design.pattern.structural.proxy.Order;
-import fun.epoch.learn.design.pattern.structural.proxy.OrderServiceImpl;
+import fun.epoch.learn.design.pattern.structural.proxy.*;
 
 public class Test {
     public static void main(String[] args) {
@@ -26,5 +23,13 @@ public class Test {
         proxyObject = (IOrderService) new OrderServiceDynamicProxy(targetObject).proxy();
         // 使用代理
         proxyObject.saveOrder(new Order((int) (Math.random() * 10), new Object()));
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println((i + 1) + "s");
+        }
+
+        // ！！注意：同一个动态代理类可以代理不同接口的实现类
+        IOrderAnalysisService proxy = (IOrderAnalysisService) new OrderServiceDynamicProxy(new OrderAnalysisServiceImpl()).proxy();
+        proxy.analyzeOrder(new Order((int) (Math.random() * 10), new Object()));
     }
 }
