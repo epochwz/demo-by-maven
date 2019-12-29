@@ -5,5 +5,7 @@ public class Test {
         new JavaCourse().makeCourse();
         System.out.println();
         new FECourse().makeCourse();
+        System.out.println();
+        new FECourse(true).makeCourse();
     }
 }
