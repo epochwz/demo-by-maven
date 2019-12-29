@@ -5,10 +5,22 @@ import fun.epoch.learn.design.pattern.behavioral.strategy.promotionstrategy.ManJ
 
 public class Test {
     public static void main(String[] args) {
-        PromotionActivity activity618 = new PromotionActivity(new LiJianPromotionStrategy());
-        activity618.executePromotionStrategy();
+        // 代码演进：需要按照日期选择促销策略
+        for (int i = 0; i < 7; i++) {
+            int promotionKey = (int) (Math.random() * 8);
 
-        PromotionActivity activity1111 = new PromotionActivity(new ManJianPromotionStrategy());
-        activity1111.executePromotionStrategy();
+            PromotionActivity activity = null;
+
+            if (promotionKey == 0) {
+                activity = new PromotionActivity(new LiJianPromotionStrategy());
+            }
+            if (promotionKey == 1) {
+                activity = new PromotionActivity(new ManJianPromotionStrategy());
+            }
+
+            if (activity != null) {
+                activity.executePromotionStrategy();
+            }
+        }
     }
 }
