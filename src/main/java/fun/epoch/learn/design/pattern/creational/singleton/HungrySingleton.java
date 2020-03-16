@@ -1,9 +1,11 @@
 package fun.epoch.learn.design.pattern.creational.singleton;
 
+import java.io.Serializable;
+
 /**
  * 饿汉式
  */
-public class HungrySingleton {
+public class HungrySingleton implements Serializable {
     private static final HungrySingleton instance = new HungrySingleton();
 
     // 1. 私有构造器
