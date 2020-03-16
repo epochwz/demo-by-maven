@@ -9,10 +9,10 @@ public class Client2 {
         for (int day = 0; day < 4; day++) {
             Video video = null;
             if (day % 7 == 0) {
-                video = new JavaVideo();
+                video = new PythonVideo();
             }
             if (day % 7 == 1) {
-                video = new PythonVideo();
+                video = new JavaVideo();
             }
             if (video != null) {
                 video.record();
