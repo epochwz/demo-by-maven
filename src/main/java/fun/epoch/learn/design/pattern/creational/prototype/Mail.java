@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Getter
 @Setter
-public class Mail {
+public class Mail implements Cloneable {
     private String name;
     private String address;
     private String content;
@@ -37,5 +37,10 @@ public class Mail {
         }
         System.out.println("create mail over.");
         return new HashMap<>();
+    }
+
+    @Override
+    protected Mail clone() throws CloneNotSupportedException {
+        return (Mail) super.clone();
     }
 }
