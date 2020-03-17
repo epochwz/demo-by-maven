@@ -10,7 +10,10 @@ public class HungrySingleton implements Serializable, Cloneable {
 
     // 1. 私有构造器
     private HungrySingleton() {
-
+        // 防御单例破坏 (反射调用)：只适用于类加载时就完成单例初始化的模式 (饿汉式)
+        if (instance != null) {
+            throw new RuntimeException("单例构造器禁止反射调用");
+        }
     }
 
     // 2. 全局访问点
