@@ -1,6 +1,7 @@
 package fun.epoch.learn.design.pattern.creational.abstractfactory;
 
 import fun.epoch.learn.design.pattern.creational.abstractfactory.factory.CourseFactory;
+import fun.epoch.learn.design.pattern.creational.abstractfactory.factory.GoCourseFactory;
 import fun.epoch.learn.design.pattern.creational.abstractfactory.factory.JavaCourseFactory;
 import fun.epoch.learn.design.pattern.creational.abstractfactory.factory.PythonCourseFactory;
 
@@ -17,6 +18,9 @@ public class Client {
             }
             if (i % 7 == 1) {
                 courseFactory = new PythonCourseFactory();
+            }
+            if (i % 7 == 2) {
+                courseFactory = new GoCourseFactory();
             }
 
             if (courseFactory == null) continue;
