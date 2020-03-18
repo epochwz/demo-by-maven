@@ -5,4 +5,10 @@ public class JavaCourse extends AbstractCourse {
     protected void packageCourse() {
         System.out.println("提供源码...");
     }
+
+    // 算法实现类可以利用算法模板类提供的钩子方法灵活的扩展自身行为
+    @Override
+    protected boolean needWriteArticle() {
+        return true;
+    }
 }
