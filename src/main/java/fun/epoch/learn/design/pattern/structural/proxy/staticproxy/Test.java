@@ -26,5 +26,12 @@ public class Test {
         proxyObject = new OrderServiceStaticProxy(targetObject);
         // 使用代理
         proxyObject.saveOrder(new Order((int) (Math.random() * 10), new Object()));
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println((i + 1) + "s");
+        }
+
+        // ！！注意：同一个静态代理类无法代理不同接口的实现类
+        // OrderServiceStaticProxy proxy = new OrderServiceStaticProxy(new OrderAnalysisServiceImpl());
     }
 }
