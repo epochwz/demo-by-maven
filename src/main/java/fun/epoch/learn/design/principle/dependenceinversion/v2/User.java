@@ -8,8 +8,7 @@ public class User {
         this.name = name;
     }
 
-    public User(String name, Course course) {
-        this.name = name;
+    public void setCourse(Course course) {
         this.course = course;
     }
 
