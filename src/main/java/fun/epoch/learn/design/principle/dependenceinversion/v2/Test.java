@@ -9,9 +9,7 @@ package fun.epoch.learn.design.principle.dependenceinversion.v2;
  */
 public class Test {
     public static void main(String[] args) {
-        User epoch = new User("epoch");
-        epoch.study(new JavaCourse());
-        epoch.study(new PythonCourse());
-        epoch.study(new GoCourse());
+        User epoch = new User("epoch", new JavaCourse()); // 构造注入
+        epoch.study();
     }
 }
