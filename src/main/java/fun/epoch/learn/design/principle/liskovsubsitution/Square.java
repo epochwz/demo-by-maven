@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Square extends Rectangle {
+public class Square implements Quadrangle {
     private long sideLength;
 
     @Override
@@ -18,15 +18,5 @@ public class Square extends Rectangle {
     @Override
     public long getWidth() {
         return getSideLength();
-    }
-
-    @Override
-    public void setLength(long length) {
-        setSideLength(length);
-    }
-
-    @Override
-    public void setWidth(long width) {
-        setSideLength(width);
     }
 }

@@ -7,7 +7,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Rectangle {
+public class Rectangle implements Quadrangle {
     private long length;
     private long width;
 }
