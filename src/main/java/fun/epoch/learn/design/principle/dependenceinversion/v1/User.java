@@ -14,4 +14,8 @@ public class User {
     public void studyPythonCourse() {
         System.out.println(this.name + " " + "学习 Python 课程");
     }
+
+    public void studyGoCourse() {
+        System.out.println(this.name + " " + "学习 Go 课程");
+    }
 }
