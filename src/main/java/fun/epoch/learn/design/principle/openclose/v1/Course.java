@@ -6,4 +6,6 @@ public interface Course {
     String getName();
 
     Double getPrice();
+
+    Double getDiscountPrice(double discount);
 }
