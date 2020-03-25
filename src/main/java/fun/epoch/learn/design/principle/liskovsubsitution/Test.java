@@ -10,6 +10,6 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        resize(new Rectangle(20, 10));
+        resize(new Square(10)); // 将造成死循环：使用子类替换父类后，程序逻辑被改变，违背了里氏替换原则
     }
 }
