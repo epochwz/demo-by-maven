@@ -10,6 +10,9 @@ public class Bird {
     private String birdName;
 
     public void move() {
+        if ("鸵鸟".equals(birdName)) {
+            System.out.println(birdName + " 用脚走");
+        }
         System.out.println(birdName + " 用翅膀飞");
     }
 }
