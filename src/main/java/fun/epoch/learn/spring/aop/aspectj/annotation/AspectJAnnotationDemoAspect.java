@@ -17,9 +17,9 @@ public class AspectJAnnotationDemoAspect {
         System.out.println("\n========== 前置通知 ========== " + joinPoint);
     }
 
-    @AfterReturning(value = "execution(* fun.epoch.learn.spring.aop..*(..))")
-    public void afterReturningAdvice() {
-        System.out.println("========== 后置通知 ==========");
+    @AfterReturning(value = "execution(* fun.epoch.learn.spring.aop..*(..))", returning = "returnValue")
+    public void afterReturningAdvice(Object returnValue) { // 可以通过 returning 属性定义方法参数的名称，而该方法参数就是切点方法的返回值
+        System.out.println("========== 后置通知 ========== 返回值：" + returnValue);
         System.out.println();
     }
 }
