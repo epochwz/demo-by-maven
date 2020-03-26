@@ -1,5 +1,6 @@
 package fun.epoch.learn.spring.aop.aspectj.annotation;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class AspectJAnnotationDemoAspect {
     @Before("execution(* *(..))")
-    public void beforeAdvice() {
-        System.out.println("\n========== 前置通知 ==========");
+    public void beforeAdvice(JoinPoint joinPoint) { // 可以使用方法参数 JoinPoint 对象获取切点信息
+        System.out.println("\n========== 前置通知 ========== " + joinPoint);
     }
 }
