@@ -28,7 +28,7 @@ public class AspectJAnnotationDemoAspect {
     @Around("execution(* fun.epoch.learn.spring.aop..delete(..))")
     public Object aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
         System.out.println("========== 环绕前通知 ==========");
-        Object returnValue = joinPoint.proceed();
+        Object returnValue = null; // 只要不调用 joinPoint.proceed(); 就可以阻止目标方法执行
         System.out.println("========== 环绕后通知 ==========");
         return returnValue;
     }
