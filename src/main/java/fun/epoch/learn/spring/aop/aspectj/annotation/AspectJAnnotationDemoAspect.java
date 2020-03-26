@@ -1,7 +1,9 @@
 package fun.epoch.learn.spring.aop.aspectj.annotation;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
@@ -21,5 +23,13 @@ public class AspectJAnnotationDemoAspect {
     public void afterReturningAdvice(Object returnValue) { // 可以通过 returning 属性定义方法参数的名称，而该方法参数就是切点方法的返回值
         System.out.println("========== 后置通知 ========== 返回值：" + returnValue);
         System.out.println();
+    }
+
+    @Around("execution(* fun.epoch.learn.spring.aop..delete(..))")
+    public Object aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
+        System.out.println("========== 环绕前通知 ==========");
+        Object returnValue = joinPoint.proceed();
+        System.out.println("========== 环绕后通知 ==========");
+        return returnValue;
     }
 }
