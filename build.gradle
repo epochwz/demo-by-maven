@@ -19,5 +19,6 @@ dependencies {
 
     compile(
             "org.springframework:spring-test:$SpringVersion",
+            "org.springframework:spring-context:$SpringVersion",
     )
 }
