@@ -35,9 +35,14 @@ public class AspectJAnnotationDemoAspect {
         System.out.println("========== 异常抛出通知 ========== 异常信息：" + e.getMessage());
     }
 
-    @After("findAll()")
+    // 如果某个通知需要同时应用到多个切点上时，可以使用 || 来连接多个切点
+    @After("findAll() || findOne()")
     public void afterAdvice() {
         System.out.println("========== 最终通知 ==========");
+    }
+
+    @Pointcut("execution(public void fun.epoch.learn.spring.aop.target.ProductDao.findOne(..))")
+    private void findOne() {
     }
 
     // 在每个通知上单独定义切点，工作量大且不易维护，因此可以使用 @Pointcut 定义可复用的切点，从而方便在各个通知上使用该切点
