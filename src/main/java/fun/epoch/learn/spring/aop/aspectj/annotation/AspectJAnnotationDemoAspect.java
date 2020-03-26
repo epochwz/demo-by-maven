@@ -34,4 +34,9 @@ public class AspectJAnnotationDemoAspect {
     public void afterThrowingAdvice(Throwable e) { // 可以通过 throwing 属性定义方法参数的名称，而该方法参数就是切点方法抛出的异常对象
         System.out.println("========== 异常抛出通知 ========== 异常信息：" + e.getMessage());
     }
+
+    @After("execution(public void fun.epoch.learn.spring.aop.target.ProductDao.find*(..))")
+    public void afterAdvice() {
+        System.out.println("========== 最终通知 ==========");
+    }
 }
