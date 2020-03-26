@@ -2,10 +2,7 @@ package fun.epoch.learn.spring.aop.aspectj.annotation;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 /**
@@ -31,5 +28,10 @@ public class AspectJAnnotationDemoAspect {
         Object returnValue = null; // 只要不调用 joinPoint.proceed(); 就可以阻止目标方法执行
         System.out.println("========== 环绕后通知 ==========");
         return returnValue;
+    }
+
+    @AfterThrowing(value = "execution(* fun.epoch.learn.spring.aop.target.ProductDao.findAll(..))")
+    public void afterThrowingAdvice() {
+        System.out.println("========== 异常抛出通知 ==========");
     }
 }
