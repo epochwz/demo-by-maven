@@ -12,5 +12,7 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    def JUnitVersion = "4.12"
+
+    compile "junit:junit:$JUnitVersion"
 }
