@@ -1,6 +1,7 @@
 package fun.epoch.learn.spring.aop.aspectj.annotation;
 
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,5 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class AspectJAnnotationDemoAspect {
-
+    @Before("execution(* *(..))")
+    public void beforeAdvice() {
+        System.out.println("\n========== 前置通知 ==========");
+    }
 }
