@@ -13,6 +13,11 @@ repositories {
 
 dependencies {
     def JUnitVersion = "4.12"
+    def SpringVersion = '4.2.4.RELEASE'
 
     compile "junit:junit:$JUnitVersion"
+
+    compile(
+            "org.springframework:spring-test:$SpringVersion",
+    )
 }
