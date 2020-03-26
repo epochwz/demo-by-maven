@@ -30,13 +30,18 @@ public class AspectJAnnotationDemoAspect {
         return returnValue;
     }
 
-    @AfterThrowing(value = "execution(* fun.epoch.learn.spring.aop.target.ProductDao.findAll(..))", throwing = "e")
+    @AfterThrowing(value = "findAll()", throwing = "e")
     public void afterThrowingAdvice(Throwable e) { // 可以通过 throwing 属性定义方法参数的名称，而该方法参数就是切点方法抛出的异常对象
         System.out.println("========== 异常抛出通知 ========== 异常信息：" + e.getMessage());
     }
 
-    @After("execution(public void fun.epoch.learn.spring.aop.target.ProductDao.find*(..))")
+    @After("findAll()")
     public void afterAdvice() {
         System.out.println("========== 最终通知 ==========");
+    }
+
+    // 在每个通知上单独定义切点，工作量大且不易维护，因此可以使用 @Pointcut 定义可复用的切点，从而方便在各个通知上使用该切点
+    @Pointcut("execution(* fun.epoch.learn.spring.aop.target.ProductDao.findAll(..))")
+    private void findAll() {
     }
 }
