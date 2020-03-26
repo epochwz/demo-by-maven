@@ -14,11 +14,14 @@ repositories {
 dependencies {
     def JUnitVersion = "4.12"
     def SpringVersion = '4.2.4.RELEASE'
+    def AspectJVersion = '1.8.9'
 
     compile "junit:junit:$JUnitVersion"
 
     compile(
             "org.springframework:spring-test:$SpringVersion",
             "org.springframework:spring-context:$SpringVersion",
+            "org.springframework:spring-aspects:$SpringVersion",
+            "org.aspectj:aspectjweaver:$AspectJVersion",
     )
 }
