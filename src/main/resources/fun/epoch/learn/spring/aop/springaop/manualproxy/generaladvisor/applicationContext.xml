@@ -17,5 +17,11 @@
     <property name="proxyInterfaces" value="fun.epoch.learn.spring.aop.target.IUserDao"/>
     <!-- 代理类使用的通知 -->
     <property name="interceptorNames" value="myBeforeAdvice"/>
+    <!-- 是否使用类代理而非接口 -->
+    <property name="proxyTargetClass" value="false"/>
+    <!-- 是否返回单例的代理对象 -->
+    <property name="singleton" value="true"/>
+    <!-- 是否强制使用 CGLib 代理 -->
+    <property name="optimize" value="false"/>
   </bean>
 </beans>
