@@ -6,4 +6,6 @@
   <!-- 配置目标类 -->
   <bean id="userDao" class="fun.epoch.learn.spring.aop.target.UserDao"/>
 
+  <!-- 配置通知类 -->
+  <bean id="myBeforeAdvice" class="fun.epoch.learn.spring.aop.springaop.manualproxy.MyBeforeAdvice"/>
 </beans>
