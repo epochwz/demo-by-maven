@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:fun/epoch/learn/spring/aop/springaop/manualproxy/generaladvisor/applicationContext.xml")
 public class GeneralAspectTest {
-    @Resource(name = "userDao")
+    @Resource(name = "userDaoProxy")
     private IUserDao userDao;
 
     @Test
