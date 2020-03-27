@@ -8,4 +8,14 @@
 
   <!-- 配置通知类 -->
   <bean id="myBeforeAdvice" class="fun.epoch.learn.spring.aop.springaop.manualproxy.MyBeforeAdvice"/>
+
+  <!-- 配置代理类 -->
+  <bean id="userDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <!-- 代理类的目标对象 -->
+    <property name="target" ref="userDao"/>
+    <!-- 代理类实现的接口 -->
+    <property name="proxyInterfaces" value="fun.epoch.learn.spring.aop.target.IUserDao"/>
+    <!-- 代理类使用的通知 -->
+    <property name="interceptorNames" value="myBeforeAdvice"/>
+  </bean>
 </beans>
