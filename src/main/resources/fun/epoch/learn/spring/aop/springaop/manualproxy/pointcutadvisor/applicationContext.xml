@@ -8,4 +8,23 @@
 
   <!-- 配置通知类 -->
   <bean id="myAroundAdvice" class="fun.epoch.learn.spring.aop.springaop.manualproxy.MyAroundAdvice"/>
+
+  <!-- 配置代理类-->
+  <bean id="productDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <!-- 配置代理目标 -->
+    <property name="target" ref="productDao"/>
+    <!-- 配置代理类型 -->
+    <property name="proxyTargetClass" value="true"/>
+    <!-- 配置带有切点的切面 -->
+    <property name="interceptorNames" value="PointcutAdvisor"/>
+  </bean>
+
+  <!-- 配置带有切点的切面 -->
+  <bean id="PointcutAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+    <!-- 配置切点的正则表达式 -->
+    <!--    <property name="pattern" value=".*save.*"/>-->
+    <property name="patterns" value=".*save.*,.*delete.*"/>
+    <!-- 配置切点所应用的通知 -->
+    <property name="advice" ref="myAroundAdvice"/>
+  </bean>
 </beans>
