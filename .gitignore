@@ -17,3 +17,9 @@
 !gradle
 !gradlew
 !gradlew.bat
+
+                    # 如何追踪子目录中的特定文件
+!framework          # 1. 先追踪原本被忽略的目录
+framework/*         # 2. 再忽略此目录的所有文件
+!framework/src      # 3. 然后再追踪感兴趣的文件
+!framework/build.gradle
