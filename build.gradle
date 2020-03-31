@@ -30,3 +30,9 @@ jar {
         }
     }
 }
+
+// 应用于当前模块和所有子模块的配置
+subprojects {
+    // 解决 “编码 GBK 的不可映射字符”
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+}
