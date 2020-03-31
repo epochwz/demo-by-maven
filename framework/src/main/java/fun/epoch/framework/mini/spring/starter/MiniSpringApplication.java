@@ -2,6 +2,7 @@ package fun.epoch.framework.mini.spring.starter;
 
 import fun.epoch.framework.mini.spring.beans.BeanFactory;
 import fun.epoch.framework.mini.spring.core.classscanner.ClassScanner;
+import fun.epoch.framework.mini.spring.web.handler.HandlerManager;
 import fun.epoch.framework.mini.spring.web.server.TomcatServer;
 import fun.epoch.framework.mini.spring.web.servlet.DispatcherServlet;
 import org.apache.catalina.LifecycleException;
@@ -19,6 +20,7 @@ public class MiniSpringApplication {
             System.out.println("启动 Tomcat 成功：正在监听 [localhost:" + port + "]");
             List<Class<?>> classes = ClassScanner.scan(clazz.getPackage().getName());
             BeanFactory.initBeans(classes);
+            HandlerManager.initHandlers(classes);
         } catch (LifecycleException e) {
             System.out.println("启动 Tomcat 失败：" + e.getMessage());
             e.printStackTrace();
