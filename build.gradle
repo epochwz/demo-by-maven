@@ -14,3 +14,17 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
+// 构建可执行 Jar 包的相关配置
+jar {
+    // 应用程序入口类
+    manifest {
+        attributes 'Main-Class': 'fun.epoch.demo.Application'
+    }
+    // 打包所有的依赖
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
