@@ -10,4 +10,15 @@
   <!-- 配置通知类 -->
   <bean id="myBeforeAdvice" class="fun.epoch.learn.spring.aop.springaop.autoproxy.MyBeforeAdvice"/>
   <bean id="myAfterAdvice" class="fun.epoch.learn.spring.aop.springaop.autoproxy.MyAfterAdvice"/>
+
+  <!-- 配置代理类 (基于切面信息的自动代理) -->
+  <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
+  <!-- 配置切面 -->
+  <bean class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+    <!-- 配置切点的正则表达式 -->
+    <property name="patterns" value=".*save.*,.*delete.*"/>
+    <!-- 配置切点所应用的通知 -->
+    <property name="advice" ref="myBeforeAdvice"/>
+  </bean>
 </beans>

@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:fun/epoch/learn/spring/aop/springaop/autoproxy/AutoProxyByBeanName.xml")
+@ContextConfiguration("classpath:fun/epoch/learn/spring/aop/springaop/autoproxy/AutoProxyByAdvisor.xml")
 public class AutoProxyTest {
     @Autowired
     private IUserDao userDao;
