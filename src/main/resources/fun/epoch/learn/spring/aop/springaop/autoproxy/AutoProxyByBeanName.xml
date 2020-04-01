@@ -10,4 +10,12 @@
   <!-- 配置通知类 -->
   <bean id="myBeforeAdvice" class="fun.epoch.learn.spring.aop.springaop.autoproxy.MyBeforeAdvice"/>
   <bean id="myAfterAdvice" class="fun.epoch.learn.spring.aop.springaop.autoproxy.MyAfterAdvice"/>
+
+  <!-- 配置代理类 (基于 Bean Name 的自动代理) -->
+  <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+    <!-- 切点 -->
+    <property name="beanNames" value="*Dao"/>
+    <!-- 通知 -->
+    <property name="interceptorNames" value="myBeforeAdvice,myAfterAdvice"/>
+  </bean>
 </beans>
